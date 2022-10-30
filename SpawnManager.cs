@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+<<<<<<< HEAD
 using TMPro;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
@@ -24,12 +25,28 @@ public class SpawnManager : MonoBehaviour
     private float gameClearRestartInterval = 4.0f;
 
     private PlayerController playerController;
+=======
+
+public class SpawnManager : MonoBehaviour
+{
+    public GameObject[] obstaclePrefab;
+    private Vector3 spawnPos = new Vector3(25, 0, 0);
+    private PlayerController playerControllerScript;
+
+    private float startDelay = 2;
+    private float repeatRate = 2;
+>>>>>>> origin/master
 
     // Start is called before the first frame update
     void Start()
     {
+<<<<<<< HEAD
         playerController = GameObject.Find("Vehicle").GetComponent<PlayerController>();
         
+=======
+        InvokeRepeating("spawnObstacle", startDelay, repeatRate);
+        playerControllerScript = GameObject.Find("Player").GetComponent<PlayerController>();
+>>>>>>> origin/master
     }
 
     // Update is called once per frame
@@ -38,6 +55,7 @@ public class SpawnManager : MonoBehaviour
         
     }
 
+<<<<<<< HEAD
     
 
     IEnumerator SpawnRandomBus()
@@ -98,5 +116,16 @@ public class SpawnManager : MonoBehaviour
     {
         yield return new WaitForSeconds(gameClearRestartInterval);
         RestartGame();
+=======
+    void spawnObstacle()
+    {
+        if (playerControllerScript.gameOver == false)
+        {
+            int obstacleIndex = Random.Range(0, obstaclePrefab.Length);
+            Instantiate(obstaclePrefab[obstacleIndex], spawnPos, obstaclePrefab[obstacleIndex].transform.rotation);
+            
+        }
+      
+>>>>>>> origin/master
     }
 }
